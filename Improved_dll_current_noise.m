@@ -1,0 +1,14 @@
+Icp=0.01;
+Kdl=10^-9;
+C=10^-10;
+Tref=10^-4;
+Wn=Icp*Kdl/(C*Tref);
+H_current_noise_dll=tf([-Kdl*2*pi/C Kdl*2*pi/(C*Tref)],[(1-Wn*Tref) Wn]);
+bode(H_current_noise_dll);
+#step(Hclosed_dll,0.01);
+#syms t s;
+#Hi= (Kdl*2*pi/(C*Tref))/(s*(1-Wn*Tref)+ Wn);
+#U(s)=laplace(1,s);
+#Y(s)=Hi*U;
+#y(t)=ilaplace(Y,t);
+#ezplot(y,[0 1]);

@@ -1,0 +1,13 @@
+Ip=0.001;
+Kpd=Ip/(2*pi);
+Kvco=50;
+R=1.6*10^6;
+C=10^(-10);
+pkg load control;
+s=tf("s");
+Hi=tf([Kvco*R Kvco/C],[1 Kpd*Kvco*R Kpd*Kvco/C]);
+#step(Hi,0.1);
+#hold on;
+ramp(Hi,10,"r");
+#hold off;
+#bode(Hi);
